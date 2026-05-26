@@ -1,4 +1,6 @@
-final List<Map<String, dynamic>> dadosTarefas = [ 
+class DadosTarefas{
+List<Map<String, dynamic>> getData () { 
+  return  [ 
   { 
     'id': 1, 
     'titulo': ' Corrigir bug login ', 
@@ -63,3 +65,5 @@ final List<Map<String, dynamic>> dadosTarefas = [
     'horas': '2', 
   } 
 ];
+}
+}
