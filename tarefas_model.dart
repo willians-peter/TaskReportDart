@@ -1,3 +1,4 @@
+import 'dadosTarefas.dart';
 class TarefaModel { 
 int id; 
 String titulo; 
