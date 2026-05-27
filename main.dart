@@ -53,33 +53,27 @@ void main() {
       .where((t) => t.status.toLowerCase().trim() == 'concluida')
       .fold<double>(0.0, (soma, tarefa) => soma + tarefa.valor);
 
-  // 2. Imprime o resultado formatado com duas casas decimais
   print('Total de tarefas concluídas: R\$ ${totalConcluido.toStringAsFixed(2)}');
   imprimirLinhaDupla();
-  //RF09 – Calcular média de valor das tarefas pendentes 
+  
   print('\n=== MÉDIA DE VALOR DAS TAREFAS PENDENTES ===');
   imprimirLinha();
 
-  // 1. Filtramos a lista para obter apenas as tarefas pendentes
   final tarefasPendentes = viewModel.tarefas
       .where((t) => t.status.toLowerCase().trim() == 'pendente')
       .toList();
 
-  // 2. Verificamos se a lista de pendentes está vazia antes de fazer o cálculo
-  if (tarefasPendentes.isEmpty) {
+   if (tarefasPendentes.isEmpty) {
     print('Não existem tarefas pendentes para calcular média.');
     imprimirLinhaDupla();
   } else {
-    // 3. Somamos o valor de todas as tarefas que estão nessa lista filtrada
-    double somaValoresPendentes = tarefasPendentes.fold<double>(
+      double somaValoresPendentes = tarefasPendentes.fold<double>(
       0.0, 
       (soma, tarefa) => soma + tarefa.valor,
     );
 
-    // 4. Calculamos a média dividindo a soma total pela quantidade de itens na lista
     double mediaFiltrada = somaValoresPendentes / tarefasPendentes.length;
 
-    // 5. Exibimos o resultado formatado com duas casas decimais
     print('Média de valor das tarefas pendentes: R\$ ${mediaFiltrada.toStringAsFixed(2)}');
     imprimirLinhaDupla();
   }
