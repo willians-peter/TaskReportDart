@@ -46,3 +46,4 @@ return TarefaModel(
       horas: int.tryParse(map['horas']?.toString() ?? '') ?? 0,
     );
 }   
+}

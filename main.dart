@@ -19,7 +19,7 @@ void main() {
     print('Responsável:      ${tarefa.responsavel}');
     print('Status:     ${tarefa.status}');
     print('Prioridade:    ${tarefa.prioridade}');
-    print('Valor:  ${tarefa.valor}');
+    print('Valor:R\$  ${tarefa.valor}');
     print('Horas:  ${tarefa.horas}');
     print('-----------------------------------');
   }
