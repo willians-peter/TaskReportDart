@@ -17,7 +17,7 @@ required this.valor,
 required this.horas
 }); 
 
-factory TarefaModel.fromMap(Map<String, dynamic> map) 
+factory TarefaModel.fromMap(Map<String, dynamic> map) {
     double tratarValor(dynamic valorBruto) {
       if (valorBruto == null) return 0.0;
       
