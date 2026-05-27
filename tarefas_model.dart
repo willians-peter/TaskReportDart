@@ -18,6 +18,17 @@ required this.horas
 }); 
 
 factory TarefaModel.fromMap(Map<String, dynamic> map) 
+    double tratarValor(dynamic valorBruto) {
+      if (valorBruto == null) return 0.0;
+      
+      String texto = valorBruto.toString()
+          .replaceAll('R\$', '') 
+          .replaceAll('.', '')   
+          .replaceAll(',', '.')   
+          .trim();                
+          
+      return double.tryParse(texto) ?? 0.0;
+    }
 return TarefaModel(
       
       id: map['id'] as int? ?? 0,
