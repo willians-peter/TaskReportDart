@@ -19,13 +19,19 @@ required this.horas
 
 factory TarefaModel.fromMap(Map<String, dynamic> map) 
 return TarefaModel(
-id: map['id'] as int,
-titulo: map['titulo'] as String,
-responsavel: map['responsavel'] as String,
-status: map['status'] as String,
-prioridade: map['prioridade'] as String,
-valor: map['valor'] as double,
-horas: map['horas'] as int,
-);
+      
+      id: map['id'] as int? ?? 0,
+
+    
+      titulo: (map['titulo'] as String?)?.trim() ?? 'Sem título',
+      responsavel: (map['responsavel'] as String?)?.trim() ?? 'Não informado',
+      status: (map['status'] as String?)?.trim() ?? 'sem status',
+      prioridade: (map['prioridade'] as String?)?.trim() ?? 'sem prioridade',
+
+      
+      valor: tratarValor(map['valor']),
+
+    
+      horas: int.tryParse(map['horas']?.toString() ?? '') ?? 0,
+    );
 }   
-//ajustando para branch develop
