@@ -1,19 +1,19 @@
 import 'tarefas_view_model.dart';
+import 'function.dart';
 
 void main() {
-  // A View só conhece a ViewModel!
+  
   final viewModel = TarefasViewModel();
-
+imprimirLinhaDupla();
   print('=== GERENCIADOR DE TAREFAS ===');
   print('Buscando tarefas no sistema...');
 
-  // Pedimos para a ViewModel processar a busca
   viewModel.carregarTarefas();
-
-  print('\nTarefas Encontradas:');
-  print('-----------------------------------');
   
-  // Mostramos os dados limpos que estão na ViewModel
+  print('\nTarefas Encontradas:');
+  imprimirLinha();
+
+  
   for (var tarefa in viewModel.tarefas) {
     print('Título:     ${tarefa.titulo}');
     print('Responsável:      ${tarefa.responsavel}');
@@ -21,6 +21,6 @@ void main() {
     print('Prioridade:    ${tarefa.prioridade}');
     print('Valor:R\$  ${tarefa.valor}');
     print('Horas:  ${tarefa.horas}');
-    print('-----------------------------------');
+    imprimirLinha();
   }
 }
