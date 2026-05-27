@@ -16,16 +16,16 @@ required this.prioridade,
 required this.valor, 
 required this.horas
 }); 
-
+//RF01 – Transformar mapas em objetos 
 factory TarefaModel.fromMap(Map<String, dynamic> map) {
     double tratarValor(dynamic valorBruto) {
-      if (valorBruto == null) return 0.0;
+      if (valorBruto == null) return 0.0;//RF02 – Tratar campos nulos
       
       String texto = valorBruto.toString()
           .replaceAll('R\$', '') 
           .replaceAll('.', '')   
           .replaceAll(',', '.')   
-          .trim();                
+          .trim();  //RF03 – Remover espaços desnecessários              
           
       return double.tryParse(texto) ?? 0.0;
     }
@@ -40,10 +40,10 @@ return TarefaModel(
       prioridade: (map['prioridade'] as String?)?.trim() ?? 'sem prioridade',
 
       
-      valor: tratarValor(map['valor']),
+      valor: tratarValor(map['valor']),//RF04 – Converter valor monetário para número
 
     
-      horas: int.tryParse(map['horas']?.toString() ?? '') ?? 0,
+      horas: int.tryParse(map['horas']?.toString() ?? '') ?? 0, //RF05 – Converter horas para número inteiro 
     );
 }   
 }

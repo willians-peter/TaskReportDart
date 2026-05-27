@@ -4,7 +4,7 @@ import 'function.dart';
 void main() {
   
   final viewModel = TarefasViewModel();
-imprimirLinhaDupla();
+  imprimirLinhaDupla();
   print('=== GERENCIADOR DE TAREFAS ===');
   print('Buscando tarefas no sistema...');
 
@@ -14,7 +14,8 @@ imprimirLinhaDupla();
   imprimirLinha();
 
   
-  for (var tarefa in viewModel.tarefas) {
+  for (var tarefa in viewModel.tarefas) { //RF06 – Exibir todas as tarefas convertidas 
+    print('ID:  ${tarefa.id}');
     print('Título:     ${tarefa.titulo}');
     print('Responsável:      ${tarefa.responsavel}');
     print('Status:     ${tarefa.status}');
