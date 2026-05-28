@@ -159,7 +159,7 @@ void main() {
   imprimirLinhaDupla();
 
   
-  //RF14 – Aplicar encapsulamento 
+ 
   //RF15 – Gerar relatório final 
 
 }
