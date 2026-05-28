@@ -8,9 +8,5 @@ class TarefasRepository {
   List<TarefaModel> getTarefas() {
     final List<Map<String, dynamic>> dadosBrutos = _dadosTarefas.getData();
     return dadosBrutos.map((mapa) => TarefaModel.fromMap(mapa)).toList();
-    }
-  } 
-
-    
-
-  
+  }
+}
