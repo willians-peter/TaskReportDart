@@ -158,7 +158,7 @@ void main() {
   }
   imprimirLinhaDupla();
 
-  //RF13 – Criar classe base e classe filha 
+  
   //RF14 – Aplicar encapsulamento 
   //RF15 – Gerar relatório final 
 
