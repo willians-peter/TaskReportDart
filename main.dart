@@ -136,6 +136,28 @@ void main() {
     imprimirLinhaDupla();
   } 
   //RF12 – Exibir status únicos usando Set 
+  print('\n=== LISTA DE STATUS ÚNICOS DISPONÍVEIS ===');
+  imprimirLinha();
+
+  
+  final Set<String> statusUnicosSet = viewModel.tarefas
+      .map<String>((t) => t.status.toLowerCase().trim())
+      .toSet();
+
+  if (statusUnicosSet.isEmpty) {
+    print('Nenhum status encontrado no sistema.');
+  } else {
+    print('Atualmente, o sistema possui ${statusUnicosSet.length} status diferentes:');
+    
+ 
+    for (String status in statusUnicosSet) {
+      
+      String statusFormatado = status[0].toUpperCase() + status.substring(1);
+      print('  • $statusFormatado');
+    }
+  }
+  imprimirLinhaDupla();
+
   //RF13 – Criar classe base e classe filha 
   //RF14 – Aplicar encapsulamento 
   //RF15 – Gerar relatório final 
