@@ -4,12 +4,12 @@ import 'function.dart';
 void main() {
   final viewModel = TarefasViewModel();
   imprimirLinhaDupla();
-  print('=== GERENCIADOR DE TAREFAS ===');
-  print('Buscando tarefas no sistema...');
+  logo();
+  buscandoTarefas();
 
   viewModel.carregarTarefas();
 
-  print('\nTarefas Encontradas:');
+  tarefasEncontradas();
   imprimirLinha();
 
   for (var tarefa in viewModel.tarefas) {
@@ -108,7 +108,6 @@ void main() {
   print('\n=== TAREFAS COM DADOS INCOMPLETOS ===');
   imprimirLinha();
 
-  // Filtra as tarefas que possuem algum campo essencial em branco ou zerado
   final tarefasIncompletas = viewModel.tarefas.where((tarefa) {
     return tarefa.titulo.trim().isEmpty ||
         tarefa.responsavel.trim().isEmpty ||
@@ -165,4 +164,76 @@ void main() {
   imprimirLinhaDupla();
 
   //RF15 – Gerar relatório final
+  print('\n');
+  imprimirLinhaDupla();
+  print('=== RELATÓRIO FINAL DE TAREFAS ===');
+  imprimirLinhaDupla();
+
+  print('Total de tarefas analisadas: ${viewModel.tarefas.length}');
+
+  int concluidasCount = viewModel.tarefas
+      .where((t) => t.status.toLowerCase().trim() == 'concluida')
+      .length;
+  int pendentesCount = viewModel.tarefas
+      .where((t) => t.status.toLowerCase().trim() == 'pendente')
+      .length;
+  int andamentoCount = viewModel.tarefas
+      .where((t) => t.status.toLowerCase().trim() == 'em andamento')
+      .length;
+  int canceladasCount = viewModel.tarefas
+      .where((t) => t.status.toLowerCase().trim() == 'cancelada')
+      .length;
+
+  print('Tarefas concluídas: $concluidasCount');
+  print('Tarefas pendentes: $pendentesCount');
+  print('Tarefas em andamento: $andamentoCount');
+  print('Tarefas canceladas: $canceladasCount');
+  print('');
+
+  print('Valor total das concluídas: R\$ ${totalConcluido.toStringAsFixed(2)}');
+
+  if (tarefasPendentes.isEmpty) {
+    print('Média de valor das pendentes: R\$ 0.00');
+  } else {
+    double somaValoresPendentes = tarefasPendentes.fold<double>(
+      0.0,
+      (soma, t) => soma + t.valor,
+    );
+    double mediaFiltrada = somaValoresPendentes / tarefasPendentes.length;
+    print(
+      'Média de valor das pendentes: R\$ ${mediaFiltrada.toStringAsFixed(2)}',
+    );
+  }
+
+  final tarefasConcluidas = viewModel.tarefas.where(
+    (t) => t.status.toLowerCase().trim() == 'concluida',
+  );
+  int totalHorasConcluidas = tarefasConcluidas.fold<int>(
+    0,
+    (soma, t) => soma + t.horas,
+  );
+  print('Total de horas concluídas: $totalHorasConcluidas');
+  print('');
+
+  print('Status encontrados:');
+  for (String status in statusUnicosSet) {
+    print('  - $status');
+  }
+  print('');
+
+  print('Tarefas com dados incompletos:');
+  if (tarefasIncompletas.isEmpty) {
+    print('  Nenhuma tarefa incompleta encontrada!');
+  } else {
+    for (var tarefa in tarefasIncompletas) {
+      String nomeExibicao = tarefa.titulo.trim().isEmpty
+          ? 'Sem título'
+          : tarefa.titulo;
+      print('  ID ${tarefa.id} - $nomeExibicao');
+    }
+  }
+
+  imprimirLinhaDupla();
+  print('=== FIM DA EXECUÇÃO DO SISTEMA ===');
+  logo();
 }
