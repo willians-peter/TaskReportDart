@@ -78,6 +78,28 @@ void main() {
     imprimirLinhaDupla();
   }
   //RF10 – Calcular total de horas por status 
+  print('\n=== TOTAL DE HORAS POR STATUS ===');
+  imprimirLinha();
+
+  // lista de status únicos do RF07
+  for (var statusAtual in todosOsStatus) {
+   
+    final tarefasDoStatus = viewModel.tarefas
+        .where((t) => t.status.toLowerCase().trim() == statusAtual);
+
+    
+    final totalHorasStatus = tarefasDoStatus.fold<int>(
+      0, 
+      (soma, tarefa) => soma + tarefa.horas,
+    );
+
+    
+    String nomeGrupo = statusAtual[0].toUpperCase() + statusAtual.substring(1);
+
+    print('Status: $nomeGrupo total de horas: ${totalHorasStatus}h');
+  }
+  imprimirLinhaDupla();
+
   //RF11 – Identificar tarefas com dados incompletos 
   //RF12 – Exibir status únicos usando Set 
   //RF13 – Criar classe base e classe filha 
