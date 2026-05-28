@@ -20,20 +20,12 @@ Atualizado em
 28 de mai. de 2026
 construtores; - encapsulamento; - herança; - polimorfismo com @override; - GitHub; - GitFlow; - Kanban.
 
-## Como executar
-
-Execute o arquivo `main.dart` no ambiente utilizado em aula.
-Exemplo:
-
-```bash
-dart run main.dart
-
 estrutura do projeto
 ├── main.dart
 ├── planejamento
-│   └── taarefas-kanban.md
+│ └── taarefas-kanban.md
 ├── tarefas_model.dart
 ├── tarefas_repository.dart
 └── tarefas_repository_interface.dart
+
 ## a estrutura segue o padrão desenvolvido em aula, com a separação entre model, repository e interface.
-```
