@@ -100,7 +100,41 @@ void main() {
   }
   imprimirLinhaDupla();
 
-  //RF11 – Identificar tarefas com dados incompletos 
+  //RF11 – Identificar tarefas com dados incompletos
+  print('\n=== TAREFAS COM DADOS INCOMPLETOS ===');
+  imprimirLinha();
+
+  // Filtra as tarefas que possuem algum campo essencial em branco ou zerado
+  final tarefasIncompletas = viewModel.tarefas.where((tarefa) {
+    return tarefa.titulo.trim().isEmpty ||
+           tarefa.responsavel.trim().isEmpty ||
+           tarefa.status.trim().isEmpty ||
+           tarefa.horas == 0 ||
+           tarefa.valor == 0.0;
+  }).toList();
+
+  if (tarefasIncompletas.isEmpty) {
+    print('Todas as tarefas estão com os dados  preenchidos!');
+    imprimirLinhaDupla();
+  } else {
+    print('Atenção! Foram encontradas ${tarefasIncompletas.length} tarefa(s) com dados faltantes:\n');
+    
+    for (var tarefa in tarefasIncompletas) {
+      
+      List<String> camposFaltantes = [];
+      
+      if (tarefa.titulo.trim().isEmpty) camposFaltantes.add('Título');
+      if (tarefa.responsavel.trim().isEmpty) camposFaltantes.add('Responsável');
+      if (tarefa.status.trim().isEmpty) camposFaltantes.add('Status');
+      if (tarefa.horas == 0) camposFaltantes.add('Horas (valor zero)');
+      if (tarefa.valor == 0.0) camposFaltantes.add('Valor (valor zero)');
+
+      print('  [ID ${tarefa.id}] - Nome provisório: "${tarefa.titulo.isEmpty ? 'Sem Título' : tarefa.titulo}"');
+      print('  Campos pendentes: ${camposFaltantes.join(', ')}');
+      imprimirLinha();
+    }
+    imprimirLinhaDupla();
+  } 
   //RF12 – Exibir status únicos usando Set 
   //RF13 – Criar classe base e classe filha 
   //RF14 – Aplicar encapsulamento 
